@@ -1,30 +1,131 @@
-# Miles_Netwrok_PRTG
+# Miles Network Monitor
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+A comprehensive network monitoring tool for Miles Education Private Limited. This standalone application provides real-time monitoring, alerting, and reporting for your network infrastructure.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/shaikbasha-mileseducatis-projects/v0-miles-netwrok-prtg)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/jyuJqhNQkfs)
+## Features
 
-## Overview
+- Real-time network monitoring
+- Device management
+- User management with role-based access control
+- Customizable dashboards
+- Automated reporting
+- Alert notifications
+- Security monitoring
+- Responsive design for all devices
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## System Requirements
 
-## Deployment
+- Windows 10/11, macOS 10.15+, or Linux (Ubuntu 20.04+, Red Hat 8+)
+- 4GB RAM minimum (8GB recommended)
+- 2GB free disk space
+- Administrator/root privileges for installation
 
-Your project is live at:
+## Installation
 
-**[https://vercel.com/shaikbasha-mileseducatis-projects/v0-miles-netwrok-prtg](https://vercel.com/shaikbasha-mileseducatis-projects/v0-miles-netwrok-prtg)**
+### Windows
 
-## Build your app
+1. Download the latest installer from the releases page
+2. Run the installer and follow the on-screen instructions
+3. Launch the application from the Start menu
 
-Continue building your app on:
+### macOS
 
-**[https://v0.dev/chat/projects/jyuJqhNQkfs](https://v0.dev/chat/projects/jyuJqhNQkfs)**
+1. Download the latest DMG file from the releases page
+2. Open the DMG file and drag the application to your Applications folder
+3. Launch the application from the Applications folder
 
-## How It Works
+### Linux (Debian/Ubuntu)
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+1. Download the latest DEB package from the releases page
+2. Install the package using:
+   \`\`\`
+   sudo dpkg -i miles-network-monitor_1.0.0_amd64.deb
+   sudo apt-get install -f
+   \`\`\`
+3. Launch the application from the applications menu or run:
+   \`\`\`
+   miles-network-monitor
+   \`\`\`
+
+### Linux (Red Hat/CentOS)
+
+1. Download the latest RPM package from the releases page
+2. Install the package using:
+   \`\`\`
+   sudo rpm -i miles-network-monitor-1.0.0-1.x86_64.rpm
+   \`\`\`
+3. Launch the application from the applications menu or run:
+   \`\`\`
+   miles-network-monitor
+   \`\`\`
+
+## Building from Source
+
+### Prerequisites
+
+- Node.js 18+ and npm 9+
+- Git
+
+### Build Steps
+
+1. Clone the repository:
+   \`\`\`
+   git clone https://github.com/miles-education/network-monitor.git
+   cd network-monitor
+   \`\`\`
+
+2. Install dependencies:
+   \`\`\`
+   npm install
+   \`\`\`
+
+3. Build the application:
+   \`\`\`
+   npm run electron:make
+   \`\`\`
+
+   This will create platform-specific packages in the `electron/out/make` directory.
+
+### Platform-Specific Builds
+
+- Windows: `npm run electron:make:win`
+- macOS: `npm run electron:make:mac`
+- Linux: `npm run electron:make:linux`
+
+## Development
+
+1. Start the Next.js development server:
+   \`\`\`
+   npm run dev
+   \`\`\`
+
+2. In a separate terminal, start the Electron app:
+   \`\`\`
+   npm run electron
+   \`\`\`
+
+## Configuration
+
+On first launch, the application will guide you through a setup wizard to configure:
+
+1. Admin credentials
+2. Network settings
+3. Monitoring parameters
+4. Notification settings
+5. Advanced system settings
+
+## Default Login
+
+- Username: `admin`
+- Password: `admin`
+
+**Important:** Change the default password after first login.
+
+## License
+
+This software is proprietary and confidential. Unauthorized copying, distribution, or use is strictly prohibited.
+
+© 2025 Miles Education Private Limited. All rights reserved.
+\`\`\`
+
+## 7. Let's create a middleware to handle authentication
