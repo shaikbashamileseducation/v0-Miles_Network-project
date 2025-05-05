@@ -1,0 +1,105 @@
+{
+  "name": "miles-network-monitor",
+  "productName": "Miles Network Monitor",
+  "version": "1.0.0",
+  "description": "Network monitoring tool for Miles Education Private Limited",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint --ext .ts,.tsx ."
+  },
+  "keywords": ["network", "monitoring", "miles", "education"],
+  "author": {
+    "name": "Miles Education Private Limited",
+    "email": "admin@mileseducation.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "./icons/icon",
+        "asar": true,
+        "extraResource": ["./docker-compose.yml", "./icons"]
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "MilesNetworkMonitor",
+            "setupIcon": "./icons/icon.ico"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": ["darwin"]
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "config": {
+            "icon": "./icons/icon.icns",
+            "background": "./assets/dmg-background.png",
+            "format": "ULFO"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {
+            "options": {
+              "name": "miles-network-monitor",
+              "productName": "Miles Network Monitor",
+              "version": "1.0.0",
+              "release": "1",
+              "summary": "Network monitoring tool for Miles Education Private Limited",
+              "description": "Comprehensive network monitoring tool for Miles Education Private Limited",
+              "group": "Applications/Internet",
+              "license": "MIT",
+              "requires": ["docker", "docker-compose"],
+              "postInstallScript": [
+                "#!/bin/bash",
+                "systemctl enable miles-monitor.service",
+                "systemctl start miles-monitor.service"
+              ]
+            }
+          }
+        }
+      ],
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "miles-education",
+              "name": "network-monitor"
+            },
+            "prerelease": false
+          }
+        }
+      ]
+    }
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.4.2",
+    "@electron-forge/maker-deb": "^6.4.2",
+    "@electron-forge/maker-dmg": "^6.4.2",
+    "@electron-forge/maker-rpm": "^6.4.2",
+    "@electron-forge/maker-squirrel": "^6.4.2",
+    "@electron-forge/maker-zip": "^6.4.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
+    "@electron-forge/publisher-github": "^6.4.2",
+    "@types/node": "^20.10.5",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "electron": "^28.1.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-import": "^2.29.1",
+    "typescript": "~5.3.3"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^8.1.0",
+    "electron-updater": "^6.1.7"
+  }
+}

@@ -6,9 +6,9 @@ import { useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import {
   Activity,
-  AlertTriangle,
   ChevronDown,
   Clock,
+  FileText,
   HardDrive,
   Home,
   LogOut,
@@ -26,6 +26,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import NotificationCenter from "@/components/notifications/notification-center"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -43,7 +44,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: "Devices", href: "/devices", icon: HardDrive },
     { name: "Traffic", href: "/traffic", icon: Activity },
     { name: "Security", href: "/security", icon: Shield },
-    { name: "Alerts", href: "/alerts", icon: AlertTriangle },
+    { name: "Reports", href: "/reports", icon: FileText },
   ]
 
   // Admin-only navigation items
@@ -65,10 +66,12 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
 
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2 text-sm">
+          <div className="hidden md:flex items-center space-x-2 text-sm">
             <Clock className="h-4 w-4 text-[#00FFFF]" />
             <span>Last updated: {new Date().toLocaleTimeString()}</span>
           </div>
+
+          <NotificationCenter />
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -78,7 +81,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 className="border-[#00FFFF] text-[#00FFFF] hover:bg-[#00FFFF]/10 flex items-center"
               >
                 <User className="h-4 w-4 mr-2" />
-                Admin User
+                <span className="hidden md:inline">Admin User</span>
                 <ChevronDown className="h-4 w-4 ml-2" />
               </Button>
             </DropdownMenuTrigger>
@@ -123,7 +126,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               onClick={() => router.push(item.href)}
             >
               <item.icon className="h-4 w-4 mr-2" />
-              {item.name}
+              <span className="hidden sm:inline">{item.name}</span>
             </Button>
           ))}
         </div>
@@ -143,7 +146,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 onClick={() => router.push(item.href)}
               >
                 <item.icon className="h-4 w-4 mr-2" />
-                {item.name}
+                <span className="hidden md:inline">{item.name}</span>
               </Button>
             ))}
           </div>
